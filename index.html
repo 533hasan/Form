@@ -36,7 +36,18 @@
 
         h2 {
             text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .phone {
+            text-align: center;
             margin-bottom: 20px;
+        }
+
+        .phone a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         div {
@@ -90,6 +101,11 @@
     <form action="#">
         <h2>Contact Us</h2>
 
+        <!-- Clickable phone number -->
+        <div class="phone">
+            📞 <a href="tel:0187108">0187108</a>
+        </div>
+
         <div>
             <label for="name">Name</label>
             <input type="text" id="name" name="user_name" required>
@@ -107,6 +123,13 @@
 
         <div>
             <button type="submit">Send Message</button>
+        </div>
+
+        <!-- Call Me button -->
+        <div>
+            <a href="tel:0187108">
+                <button type="button">Call me</button>
+            </a>
         </div>
     </form>
 
