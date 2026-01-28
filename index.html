@@ -6,15 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple HTML Form</title>
 
+    <!-- dataLayer initialization -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+    </script>
+
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NZMFLDCX');</script>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NZMFLDCX');
+    </script>
     <!-- End Google Tag Manager -->
 
     <style>
@@ -94,16 +106,33 @@
 <body>
 
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZMFLDCX" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZMFLDCX"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <form action="thank-you.html">
+    <form action="thank-you.html" onsubmit="
+        dataLayer.push({
+            event: 'form_submit',
+            form_name: 'contact_us',
+            user_name: document.getElementById('name').value,
+            user_email: document.getElementById('email').value
+        });
+    ">
+
         <h2>Contact Us</h2>
 
         <!-- Clickable phone number -->
         <div class="phone">
-            📞 <a href="tel:0187108">0187108</a>
+            📞
+            <a href="tel:0187108" onclick="dataLayer.push({
+                event: 'phone_click',
+                phone_number: '0187108',
+                click_type: 'text_link'
+            });">
+                0187108
+            </a>
         </div>
 
         <div>
@@ -127,10 +156,18 @@
 
         <!-- Call Me button -->
         <div>
-            <a href="tel:0187108">
-                <button type="button">Call me</button>
-            </a>
+            <button type="button" onclick="
+                dataLayer.push({
+                    event: 'phone_click',
+                    phone_number: '0187108',
+                    click_type: 'call_button'
+                });
+                window.location.href='tel:0187108';
+            ">
+                Call me
+            </button>
         </div>
+
     </form>
 
 </body>
